@@ -1,43 +1,252 @@
 <html>
     <head>
+        <link href="https://fonts.googleapis.com/css?family=Mina" rel="stylesheet"> 
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
         <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="./nstyle.css">
+        <link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/animate.css@3.6.1/animate.css">
+
+        <script type="text/javascript">
+                $(document).ready(function() {
+                    // Custom 
+                    var stickyToggle = function(sticky, stickyWrapper, scrollElement) {
+                      var stickyHeight = sticky.outerHeight();
+                      var stickyTop = stickyWrapper.offset().top;
+                      if (scrollElement.scrollTop() >= stickyTop){
+                        stickyWrapper.height(stickyHeight);
+                        sticky.addClass("is-sticky");
+                      }
+                      else{
+                        sticky.removeClass("is-sticky");
+                        stickyWrapper.height('auto');
+                      }
+                    };
+                    
+                    // Find all data-toggle="sticky-onscroll" elements
+                    $('[data-toggle="sticky-onscroll"]').each(function() {
+                      var sticky = $(this);
+                      var stickyWrapper = $('<div>').addClass('sticky-wrapper'); // insert hidden element to maintain actual top offset on page
+                      sticky.before(stickyWrapper);
+                      sticky.addClass('sticky');
+                      
+                      // Scroll & resize events
+                      $(window).on('scroll.sticky-onscroll resize.sticky-onscroll', function() {
+                        stickyToggle(sticky, stickyWrapper, $(this));
+                      });
+                      
+                      // On page load
+                      stickyToggle(sticky, stickyWrapper, $(window));
+                    });
+
+
+                    //document.getElementById("iframe").innerHTML = "<iframe src='" + localStorage.ExternalListing + "'width='" + (window.innerWidth - 20) + "'height='" + (window.innerHeight - document.getElementById("header").offsetHeight - document.getElementById("footing").offsetHeight - 20) + "'style='padding:0px;margin:0px'></iframe>";
+
+
+
+                  });
+
+
+                function animationHover(element, animation){
+                    element = $(element);
+                    element.hover(
+                        function() {
+                            element.addClass('animated ' + animation);        
+                        },
+                        function(){
+                            //wait for animation to finish before removing classes
+                            window.setTimeout( function(){
+                                element.removeClass('animated ' + animation);
+                            }, 2000);         
+                        });
+                }
+
+                $(document).ready(function(){
+                    $('#up_coder').each(function() {
+                        animationHover(this, 'bounce');
+                    });
+                    $('#up_employer').each(function() {
+                        animationHover(this, 'bounce');
+                    });
+                    $('#up_studient').each(function() {
+                        animationHover(this, 'bounce');
+                    });
+                });
+        </script>
+
     </head>
     <body>
-        <div id="fat-header">
-            <div id="menu">
-                <!-- <div class="pos-f-t"> -->
-                    <nav class="navbar navbar-light my-2 my-lg-0">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+        <!-- Resume modal dialog window -->
+        <div class="modal fade" id="resumeModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Resume</h5>
+                        <div class="btn-group close" role="group" >
+                        <button type="button" data-dismiss="modal"  class="btn btn-primary">
+                                <i class="material-icons">print</i>
                         </button>
-                    </nav>
-                <!-- </div> -->
-            </div>  
-            <div id="face-circle"></div>  
-
-        </div>
-        <div class="waterfall-container container-fluid">
-            <h1>Leonid Averianov</h1>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm">
-                    <img src="" />
-                    coder
-                    </div>
-                    <div class="col-sm">
-                    <img src="" />
-                    looking for a job
-                    </div>
-                    <div class="col-sm">
-                    <img src="" />    
-                    person
+                        <button type="button"  data-dismiss="modal"  class="btn btn-primary">
+                            <i class="material-icons">link</i>
+                        </button>
+                        <button type="button" data-dismiss="modal" class="btn btn-secondary" aria-label="Close">
+                            <i class="material-icons">close</i>
+                        </button>
                     </div>
                 </div>
+                <div class="modal-body">
+
+                </div>
+                        <iframe src="https://docs.google.com/document/d/e/2PACX-1vQ5_H-GQpUtB02UxlTAbFRFUYyMq15aFsQpEAm3KDaLVI9b1sA-gV7tlNUkxEJ7jyrcu4PagJs0tKMn/pub?embedded=true" height="1300px" frameBorder="0"></iframe>
+                <div class="modal-footer">
+                    
+                    <button type="button" class="btn btn-primary">
+                        <i class="material-icons">print</i>
+                    </button>
+                    <button type="button" class="btn btn-primary">
+                        <i class="material-icons">link</i>
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+            </div>
+        </div>
+        <!-- Private Entrepreneur card modal window -->
+        <div id="fat-header">
+            <div id="menu" data-toggle="sticky-onscroll">
+                <button class="btn btn-light" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="material-icons" style="font-size: 35px;">
+                        menu
+                    </i>
+                </button>
+                <div class="dropdown-menu ham-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#resumeModal">Resume</a>
+                <a class="dropdown-item" href="#">Private Entrepreneur card</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Contacts</a>
+                </div>
+            </div>  
+
+            <div class="face-wrapper">
+                <img id="face-circle" src="portrait2.png"></div>  
+            </div>
+        </div>
+        <div class="waterfall-container container-fluid">
+            <div class="container main-container" id="">
+                <h1 align="center">Leonid Averianov</h1>
+                    <div class="container deck">
+                        <div class="row">
+                            <div id="up_coder" class=" col-xs-4 col-sm-4 col-md-4">
+                                <!-- <img class="align-center" src="./baseline-code-24px.svg" width="48" height="48"/> -->
+                                <i class="material-icons">
+                                    code
+                                </i>
+                                <p>coder</p>
+                            </div>
+                            <div id="up_employer" class="col-xs-4 col-sm-4 col-md-4">
+                                <i class="material-icons">
+                                    work
+                                </i>
+                                <p>employer</p>
+                            </div>
+                            <div id="up_studient" class="col-xs-4 col-sm-4 col-md-4">
+                                <i class="material-icons">
+                                    book
+                                </i>
+                                <p>studiend</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block container">
+                            <!-- <img class="align-center" src="./baseline-code-24px.svg" width="96" height="96"/> -->
+                            <div>
+                                <i class="material-icons">
+                                    code
+                                </i>
+                            </div>
+                            <h2 class="t-align-center con-header">ABOUT</h2>
+                            <p class="block-paragraph">
+                                    For the first time I started programming in the fifth grade at school, when the new subject appeared - computer science. I wrote my first programs in the MicroWorld Ex enviroment. Then i start leaning BlitzBasic to create 3d games. In the days of college students, I helped my brother with projects on PHP and Android. Currently I'm mostly writing on JavaScript and ANSI C. 
+                            </p>
+                            <h2 class="t-align-center con-header">I AM FAMILIAR WITH</h2>
+                            <div class="list-element row">
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <img src="img/linux.svg"></img>
+                                    <h3>GNU / LINUX</h3>
+                                    <p>Installation and configuration. Ability to work with task scheduler, initialization system, etc. In my practice, I used Debian and Gentoo.</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <img src="img/nodejs.svg"></img>
+                                    <h3>JAVASCRIPT / NODEJS</h3>
+                                    <p>At my first workplace, I programmed using the NodeJS. During my work in the organization I used ExpressJS, AngularJS, etc.</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <img src="img/html.svg"></img>
+                                    <h3>HTML / CSS</h3>
+                                    <p>In my development, I usually do not use compiled style languages such as less or sass. But in general, I know them.</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <img src="img/shell.svg"></img>
+                                    <h3>SHELL SCRIPTING</h3>
+                                    <p>Wrote some simple programs for Linux.</p>
+                                </div>
+                            </div>
+                            <h2 class="t-align-center con-header">STUDYING IN PROGRESS</h2>
+                            <div class="list-element row">
+                                <div class="list-element col-lg-6 col-md-6 col-sm-12">
+                                    <img src="img/c.svg"></img>
+                                    <h3>ANSI C</h3>
+                                    <p>I did practical work on it, and also wrote some simple programs for Linux.</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <img src="img/go.svg"></img>
+                                    <h3>GOLANG</h3>
+                                    <p>In progress</p>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <img src="img/react.svg"></img>
+                                        <h3>REACTJS</h3>
+                                        <p>In progress</p>
+                                    </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    <img src="img/vue.svg"></img>
+                                    <h3 class="list-title t-align-center">VUEJS</h3>
+                                    <p class="p-title">In progress</p>
+                                </div>
+                            </div>
+<!-- Начало следущего раздела! -->
+                            <div class="container block">
+                                <div>
+                                    <i class="material-icons">
+                                        work
+                                    </i>
+                                </div>
+                                <h2 class="t-align-center con-header">LOOKING FOR A JOB</h2>
+                                <p class="block-paragraph">
+                                    At the moment I'm in search of work. I can work as full-time or remotely. Also, for legal entities, I work as an individual entrepreneur.
+                                    If my personality interested you, please contact me in any of the ways.
+                                </p>
+                                <h2 class="t-align-center con-header">EXPERIENCE</h2>
+                                <div class="list-element row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <img src="img/gblab.svg"></img>
+                                        <h3 class="list-title t-align-center">Front End Developer Intern</h3>
+                                        <h4 class="list-subtitle  t-align-center">JULY 2016 - AUGUST 2016</h4>
+                                        <p class="p-title">"Gosbuk" CJSC, Moscow</p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <img src="img/me.svg"></img>
+                                        <h3 class="list-title t-align-center">Freelancer</h3>
+                                        <h4 class="list-subtitle  t-align-center">SEPTEMBER 2017 - CURRENT TIME</h4>
+                                        <p class="p-title">PE Averyanov Leonid Evgenyevich</p>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>                    
             </div>
         </div>
     </body>

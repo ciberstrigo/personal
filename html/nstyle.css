@@ -1,0 +1,60 @@
+.list-element > div > img {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 70px;
+	height: 70px;
+	background: #FFFFFF;
+	-moz-border-radius: 35px;
+	-webkit-border-radius: 35px;
+    border-radius: 45px;
+    border: 4px solid #7DAF9C;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.list-element > div >  h3 {
+    color: #7DAF9C;
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: 20px;
+
+    text-align: center;
+}
+
+.list-element > div >  p {
+    font-family: Roboto;
+    font-weight: normal;
+    text-align: center;
+    font-size: 18px;
+}
+
+.deck > div {
+    margin-top: 4em;    
+    margin-bottom: 4em;
+    text-align: center;
+}
+
+.deck > div > div > i {
+    font-size: 4em; 
+    display: inline-block;
+}
+
+.deck > div > div > p {
+    font-family: Mina;
+    font-weight: bold;
+    font-size: 2em;
+    text-align: center;
+}
+
+.block > div {
+    text-align: center;
+}
+
+.block > div > i {
+    font-size: 5em;
+    display: inline-block;
+}
