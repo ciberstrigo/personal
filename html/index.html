@@ -13,6 +13,8 @@
 
         <script type="text/javascript">
                 $(document).ready(function() {
+                    var headerFieldHeight = $("#headerField").height();
+
                     // Custom 
                     var stickyToggle = function(sticky, stickyWrapper, scrollElement) {
                       var stickyHeight = sticky.outerHeight();
@@ -20,10 +22,21 @@
                       if (scrollElement.scrollTop() >= stickyTop){
                         stickyWrapper.height(stickyHeight);
                         sticky.addClass("is-sticky");
+                        // console.log(headerFieldHeight);
+
                       }
                       else{
                         sticky.removeClass("is-sticky");
                         stickyWrapper.height('auto');
+                      }
+                      if (headerFieldHeight < scrollElement.scrollTop()) {
+                            // alert("recolor");
+                            // sticky.children().css('background-color', 'red');
+                            // sticky.children().removeClass('btn-light')
+                            sticky.children().css('color', 'gray');
+                            // .addClass('darking')
+                      } else {
+                        sticky.children().css('color', 'white');
                       }
                     };
                     
@@ -116,7 +129,7 @@
             </div>
         </div>
         <!-- Private Entrepreneur card modal window -->
-        <div class="header-field">
+        <div class="header-field" id="headerField">
             <div id="menu" data-toggle="sticky-onscroll">
                 <button class="btn btn-light" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="material-icons" style="font-size: 35px;">
@@ -175,22 +188,22 @@
                             <h2>I AM FAMILIAR WITH</h2>
                             <div class="list-element row">
                                 <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <img src="img/linux.svg"></img>
+                                    <div><img src="img/linux.svg"></img></div>
                                     <h3>GNU / LINUX</h3>
                                     <p>Installation and configuration. Ability to work with task scheduler, initialization system, etc. In my practice, I used Debian and Gentoo.</p>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <img src="img/nodejs.svg"></img>
+                                    <div><img src="img/nodejs.svg"></img></div>
                                     <h3>JAVASCRIPT / NODEJS</h3>
                                     <p>At my first workplace, I programmed using the NodeJS. During my work in the organization I used ExpressJS, AngularJS, etc.</p>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <img src="img/html.svg"></img>
+                                    <div><img src="img/html.svg"></img></div>
                                     <h3>HTML / CSS</h3>
                                     <p>In my development, I usually do not use compiled style languages such as less or sass. But in general, I know them.</p>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <img src="img/shell.svg"></img>
+                                    <div><img src="img/shell.svg"></img></div>
                                     <h3>SHELL SCRIPTING</h3>
                                     <p>Wrote some simple programs for Linux.</p>
                                 </div>
@@ -198,22 +211,22 @@
                             <h2>STUDYING IN PROGRESS</h2>
                             <div class="list-element row">
                                 <div class="list-element col-lg-6 col-md-6 col-sm-12">
-                                    <img src="img/c.svg"></img>
+                                    <div><img src="img/c.svg"></img></div>
                                     <h3>ANSI C</h3>
                                     <p>I did practical work on it, and also wrote some simple programs for Linux.</p>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <img src="img/go.svg"></img>
+                                    <div><img src="img/go.svg"></img></div>
                                     <h3>GOLANG</h3>
                                     <p>In progress</p>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <img src="img/react.svg"></img>
+                                    <div><img src="img/react.svg"></img></div>
                                     <h3>REACTJS</h3>
                                     <p>In progress</p>
                                     </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12">
-                                    <img src="img/vue.svg"></img>
+                                    <div><img src="img/vue.svg"></img></div>
                                     <h3>VUEJS</h3>
                                     <p>In progress</p>
                                 </div>
@@ -221,7 +234,7 @@
 <!-- Начало следущего раздела! -->
                             <div class="container block">
                                 <div>
-                                    <i class="material-icons">
+                                    <i class="material-icons" style="">
                                         work
                                     </i>
                                 </div>
@@ -233,13 +246,13 @@
                                 <h2>EXPERIENCE</h2>
                                 <div class="list-element row">
                                     <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <img src="img/gblab.svg"></img>
+                                        <div><img src="img/gblab.svg"></img></div>
                                         <h3 class="list-title t-align-center">Front End Developer Intern</h3>
                                         <h4 class="list-subtitle  t-align-center">JULY 2016 - AUGUST 2016</h4>
                                         <p class="p-title">"Gosbuk" CJSC, Moscow</p>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-12">
-                                        <img src="img/me.svg"></img>
+                                        <div><img src="img/me.svg"></img></div>
                                         <h3 class="list-title t-align-center">Freelancer</h3>
                                         <h4 class="list-subtitle  t-align-center">SEPTEMBER 2017 - CURRENT TIME</h4>
                                         <p class="p-title">PE Averyanov Leonid Evgenyevich</p>
