@@ -1,11 +1,17 @@
 var express = require('express');
 var app = express();
+var fs = require('fs');
+var index = "html/index.html";
 
-app.get('/', function(req, res){
-   res.send("Hello world!");
-});
+    app.use('/', express.static(__dirname + '/html'));
+    app.use('/img', express.static(__dirname + '/html/img'));
 
-app.listen(8080, '85.143.173.216');
+     
+     app.listen(8080);
+
+
+
+
 
 
 
