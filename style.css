@@ -44,6 +44,11 @@ header > .tabs > ul > li {
     padding: 0 15pt 0 15pt;
 }
 
+header > .tabs > ul > li > a {
+    text-decoration: none;
+    color: inherit;
+}
+
 header > .tabs > ul > li.active {
     background-color: #ccc;
     color: #1214b0;
@@ -106,7 +111,6 @@ footer > .content {
     font-family: 'BIOS-rus';
     src: url("./fonts/basis33.ttf") format("truetype");
 }
-
 
 /*testificate*/
 
