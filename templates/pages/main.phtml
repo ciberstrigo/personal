@@ -1,6 +1,24 @@
-<h1>PHP programmer ☺ ▲ ▼ Привет мир</h1>
-<p>
-    Web Developer specializing in backend development. Experienced with all stages of the development cycle for dynamic web projects.
-    Well-versed in the PHP tech stack, including Symfony, Doctrine, Sonata Admin, Twig, MySQL, etc. Also have experience with Vue and Vuex.
-    Strong background in architecting financial money-transfer systems.
-</p>
+<?php $this->extend('base.phtml') ?>
+<?php $this->block('content') ?>
+    <h1>
+        Leonid Averianov
+    </h1>
+<!--    <noindex><p>-->
+<!--        █▒▒ █▀▀ █▀█ █▄░█ █ █▀▄   ▄▀█ █░█ █▀▀ █▀█ ░█░ ▄▀█ █▄░█ █▀█ █░█<br>-->
+<!--        █▄▄ ██▄ █▄█ █░▀█ █ █▄▀   █▀█ ▀▄▀ ██▄ █▀▄ ░█░ █▀█ █░▀█ █▄█ ▀▄▀<br>-->
+<!--    </p></noindex>-->
+    <p>
+        Web Developer specializing in backend development. <br>
+        Experienced with all stages of the development cycle for dynamic web projects.<br>
+        Well-versed in the <b>PHP</b> tech stack, including <b>Symfony</b>, <b>Doctrine</b>, <b>Sonata Admin</b>, <b>Twig</b>, <b>MySQL</b>, etc.<br>
+        Am also studying the <b>React</b> tech stack (<b>Redux</b>, <b>TypeScript</b>) in <a href="https://practicum.yandex.ru/react/">Yandex.Practicum.</a><br>
+    </p>
+    <p>
+        I also like to play computer games, walk and listen to music. I dream of losing weight, but still eat lots of chocolates ☺.<br>
+        I currently live in Tbilisi, Georgia. This is a small country in the South of the Caucasus where it is always sunny, there are many good people, and it is easy to work as individual entrepreneur.
+    </p>
+    <?=(new Template())->render('components/georgian-flag.phtml') ?>
+    <p>
+        I am always open to communication or new opportunities. If you wish, you can <a href="/contact">contact me</a>.
+    </p>
+<?php $this->endblock() ?>

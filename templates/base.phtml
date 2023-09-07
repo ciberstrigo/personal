@@ -15,25 +15,36 @@
     </div>
     <div class="tabs">
         <ul>
-            <li><a href="/">Main</a></li>
-            <li><a href="/articles">Articles</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <a href="/"><li class="<?= '/' === $this->path ? 'active' : '' ?>">Main</li></a>
+            <a href="/articles"><li class="<?= '/articles' === $this->path ? 'active' : '' ?>">Articles</li></a>
+            <a href="/contact"><li class="<?= '/contact' === $this->path ? 'active' : '' ?>">Contact</li></a>
         </ul>
+        <div class="user-info">
+            <?php if (isset($_SESSION['login'])) {
+                echo($_SESSION['login'].': '.'<a href="/logout">Logout</a>');
+            } else {
+                echo('<a href="/login">Login</a>');
+            } ?>
+        </div>
     </div>
 </header>
 <main>
     <div class="in-block">
         <div class="left content">
-            <?= $this->content; ?>
+            <?= $this->content ?>
         </div>
         <div class="divider"></div>
         <div class="right content">
             <fieldset>
                 <legend>Language:</legend>
-                <div class="select-options">
-                    <a class="active">►&#0020;English</a>
-                    <a>&#0020;&#0020;Русский</a>
-                </div>
+                <?= (new Template())->render(
+                        'components/switch.phtml',
+                        [
+                            'field' => 'lang',
+                            'options' => ['English', 'Русский'],
+                            'default' => 'English'
+                        ]
+                ) ?>
             </fieldset>
 
             <fieldset>
@@ -51,5 +62,6 @@
         All rights reserved. Made with PHP without any javascript and fancy frameworks.
     </div>
 </footer>
+<?= $this->modal ?>
 </body>
 </html>

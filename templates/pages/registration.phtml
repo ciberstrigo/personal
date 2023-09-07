@@ -1,0 +1,17 @@
+<?php $this->extend('base.phtml') ?>
+<?php $this->block('content') ?>
+    <div class="login-window">
+        <h1>Registration</h1>
+        <form action="/registration" method="POST">
+            <?=flash('registration') ?>
+
+            <label for="login">Username:</label>
+            <input name="login" id="login" type="text" class="textable"/>
+
+            <label for="password">Password:</label>
+            <input name="password" id="password" type="password" class="textable"/>
+
+            <input type="submit" name="Register"/>
+        </form>
+    </div>
+<?php $this->endblock() ?>

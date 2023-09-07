@@ -1,0 +1,28 @@
+<?php
+    function isOptionActive($context, $option): bool
+    {
+        if (!isset($_SESSION[$context->field]) && $option === $context->default) {
+            return true;
+        }
+
+        if (isset($_SESSION[$context->field]) && $_SESSION[$context->field] === $option) {
+            return true;
+        }
+
+        return false;
+    }
+?>
+
+<div class="select-options">
+    <?php foreach ($this->options as $option): ?>
+        <a class="<?= isOptionActive($this, $option) ? 'active' : '' ?> "
+           href="/set?lang=<?=$option ?>"
+        >
+            <?= isOptionActive($this, $option) ? '►' : '&#0020;' ?>&#0020;<?=$option?>
+        </a>
+    <?php endforeach; ?>
+</div>
+
+
+
+

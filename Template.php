@@ -2,7 +2,9 @@
 class Template {
     private $scriptPath='./templates/';
     public $properties;
-    private string $parent;
+    public string $path;
+
+    private ?string $parent;
     private array $blocks;
     private array $blockContext;
 
@@ -12,6 +14,9 @@ class Template {
 
     public function __construct(){
         $this->properties = array();
+        $this->parent = null;
+        $this->blocks = [];
+        $this->path = $_SERVER['REQUEST_URI'];
     }
 
     public function render(string $filename, array $parameters = []){
@@ -19,15 +24,17 @@ class Template {
             $this->properties[$key] = $parameter;
         }
 
-        ob_start();
+        $this->parent || ob_start();
         if(file_exists($this->scriptPath.$filename)){
             include($this->scriptPath.$filename);
-
-            if ($this->parent) {
-                (new Template)->render($this->parent, $this->blocks);
-            }
         } else throw new LogicException();
-        return ob_get_clean();
+        $result = ob_get_clean();
+
+        if ($this->parent) {
+            return (new Template)->render($this->parent, [...$this->blocks, ...$this->properties]);
+        } else {
+            return $result;
+        }
     }
 
     public function __set($k, $v){
@@ -35,7 +42,7 @@ class Template {
     }
 
     public function __get($k){
-        return $this->properties[$k];
+        return array_key_exists($k, $this->properties) ? $this->properties[$k] : '';
     }
 
     public function extend(string $fileLocation) {
@@ -51,10 +58,7 @@ class Template {
         $this->blocks[array_pop($this->blockContext)] = ob_get_clean();
     }
 
-}
-
-function BaseTemplate(string $content) {
-    return (new Template)->render('base.phtml', ['content' =>
-        $content
-    ]);
+    public function isPropertyExist(string $name) {
+        return array_key_exists($name, $this->properties);
+    }
 }

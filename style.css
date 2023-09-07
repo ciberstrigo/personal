@@ -24,9 +24,14 @@ header > .title {
     flex-wrap: wrap;
 }
 
+.text-red {
+    color: red;
+}
 header > .tabs {
     background-color: #1214b0;
     height: 20pt;
+    display: flex;
+    justify-content: space-between;
 }
 
 header > .tabs > ul {
@@ -37,22 +42,36 @@ header > .tabs > ul {
     height: 100%;
 }
 
-header > .tabs > ul > li {
+header > .tabs > ul > a > li {
     color: #ccc;
     display: flex;
     align-items: center;
     padding: 0 15pt 0 15pt;
 }
 
-header > .tabs > ul > li > a {
+header > .tabs > ul > a {
     text-decoration: none;
     color: inherit;
+    display: flex;
 }
 
-header > .tabs > ul > li.active {
+header > .tabs > ul > a > li.active {
     background-color: #ccc;
     color: #1214b0;
 }
+
+header > .tabs > .user-info {
+    display: flex;
+    align-items: center;
+    padding: 0 15pt 0 15pt;
+    color: #ccc;
+}
+
+header > .tabs > .user-info > a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
 
 main {
     height: calc(100vh - 80pt);
@@ -165,10 +184,16 @@ footer > .content {
     flex-direction: column;
 }
 
+.select-options a {
+    text-decoration: none;
+    color: inherit;
+}
+
 /* button */
 a {
-    border: none;
-    outline: none;
+    /*border: none;*/
+    /*outline: none;*/
+    color: inherit;
     font-family: 'BIOS', 'BIOS-rus', 'sans-serif';
 }
 
@@ -177,3 +202,75 @@ a.active {
     color: white;
 }
 
+/* !login.phtml! */
+.login-window {
+    position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #00eebc; width: 50%;
+    padding: 10pt;
+    box-shadow: 10px 15px 1px 0 rgba(0, 0, 0, 0.5);
+}
+
+.login-window > form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-window > form > input {
+    margin-bottom: 10pt;
+}
+
+.login-window > form > input.textable {
+    color: white;
+    background-color: #1214b0;
+    border: none; /* Remove default border */
+    outline: none; /* Remove the default focus outline */
+    font-family: 'BIOS', 'BIOS-rus', sans-serif;
+}
+
+.login-window > form > input[type='submit'] {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: 'BIOS', 'BIOS-rus', sans-serif;
+    font-size: 16pt;
+}
+
+.alert-error {
+    padding: 10pt;
+    margin-bottom: 10pt;
+    background-color: red;
+    color: yellow;
+}
+
+.alert-success {
+    padding: 10pt;
+    margin-bottom: 10pt;
+    background-color: #1214b0;
+    color: yellow;
+}
+
+
+.modal-background {
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 998;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 999;
+}
+
+b {
+    color: yellow;
+    background-color: green;
+}
+
+main li {
+    list-style-type: square;
+}

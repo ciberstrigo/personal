@@ -1,0 +1,19 @@
+<?php $this->extend('base.phtml') ?>
+<?php $this->block('modal') ?>
+    <a class="modal-background" href="<?= previousLocation() ?>"></a>
+    <div class="login-window modal">
+        <h1>Want to log-in?</h1>
+        <form action="/login" method="POST">
+            <?=flash('login') ?>
+            <label for="login">Username:</label>
+            <input name="login" id="login" type="text" class="textable"/>
+
+            <label for="password">Password:</label>
+            <input name="password" id="password" type="password" class="textable"/>
+
+            <input type="submit" name="logining"/>
+        </form>
+
+        No account? : <a href="/registration">Registration</a>
+    </div>
+<?php $this->endblock() ?>
