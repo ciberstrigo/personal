@@ -1,12 +1,12 @@
 <?php
 
-function route($routes) {
+function route($routes): string
+{
     $requestPath = explode('?', $_SERVER['REQUEST_URI'])[0];
 
-    // call a function if rute completely math with a path
+    // call a function if route completely math with a path
     if (array_key_exists($requestPath, $routes)) {
-        echo $routes[$requestPath]();
-        return;
+        return $routes[$requestPath]();
     }
 
     // or else we've to do some magick here
@@ -36,28 +36,57 @@ function route($routes) {
         }, $pathMatches[1]);
 
         $arguments = array_combine($argumentNames, $matches);
-        call_user_func_array($routes[$origPath], $arguments);
+
+        return call_user_func_array($routes[$origPath], $arguments);
     }
 
-    locate('/');
+    return isset($routes['/404']) ? $routes['/404']() : '404 page not found';
 }
 
-route([
+echo route([
     '/articles' => static function () {
-        return (new Template)->render('pages/articles.phtml', [
-            'articles' => articleList()
+        return (new Template)->render('pages/article/list.phtml', [
+            'articles' => articleList(),
+            'isAdmin' => isset($_SESSION['user_id']) && isAdmin($_SESSION['user_id'])
         ]);
     },
-    '/articles/{id}' => static function ($id) {
-        var_dump($id);die;
+    '/article/{id}' => static function ($id) {
+        return (new Template)->render('pages/article/article.phtml', [
+            'article' => getArticle($id)
+        ]);
     },
-    '/articles/{id}/comments/{comments_id}' => static function ($id, $commentsId) {
-        var_dump($id);
-        var_dump($commentsId);
-        die;
+    '/article/create' => static function() {
+        if (empty($_SESSION['user_id']) || !isAdmin($_SESSION['user_id'])) {
+            locate(previousLocation());
+        }
+
+        if ('POST' === $_SERVER['REQUEST_METHOD']) {
+            $id = createArticle($_SESSION['user_id'], $_POST['title'], $_POST['text']);
+            locate('/article/'.$id);
+        }
+
+        return (new Template)->render('pages/article/create.phtml', []);
+    },
+    '/article/{articleId}/edit' => static function($articleId) {
+        if (empty($_SESSION['user_id']) || !isAdmin($_SESSION['user_id'])) {
+            locate(previousLocation());
+        }
+
+        if ('POST' === $_SERVER['REQUEST_METHOD']) {
+            editArticle($articleId, $_POST['title'], $_POST['text']);
+            locate('/article/'.$articleId);
+        }
+
+        $article = getArticle($articleId);
+
+        return (new Template)->render('pages/article/edit.phtml', [
+            'title' => $article['name'],
+            'text' => $article['text'],
+            'articleId' => $articleId
+        ]);
     },
     '/contact' => static function () {
-        return (new Template)->render('pages/contact.phtml', []);
+        return (new Template)->render('pages/contact/contact.phtml', []);
     },
     '/' => static function () {
         return (new Template)->render('pages/main.phtml', []);
@@ -72,12 +101,12 @@ route([
 
             if (empty($_POST['login']) || empty($_POST['password'])) {
                 flash('login', 'Username or password is incorrect', FLASH_ERROR);
-                header('Location: /login');die;
+                locate('/login');
             }
 
             if (!$user = login($_POST['login'], $_POST['password'])) {
                 flash('login', 'Username or password is incorrect', FLASH_ERROR);
-                header('Location: /login');die;
+                locate('/login');
             }
 
             session_regenerate_id();
@@ -86,10 +115,10 @@ route([
             $_SESSION['user_id']  = $user['id'];
 
             flash('login', 'Login success', FLASH_SUCCESS);
-            header('Location: /login');die;
+            locate('/login');
         }
 
-        return (new Template)->render('pages/login.phtml', []);
+        return (new Template)->render('pages/login/login.phtml', []);
     },
     '/registration' => static function () {
         if ('POST' === $_SERVER['REQUEST_METHOD']) {
@@ -134,5 +163,8 @@ route([
     },
     '/test' => static function() {
         var_dump(articleList());die;
+    },
+    '/404' => static function() {
+        return (new Template())->render('pages/404/404.phtml');
     }
 ]);

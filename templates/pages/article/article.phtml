@@ -1,7 +1,7 @@
 <?php $this->extend('base.phtml') ?>
 <?php $this->block('content') ?>
-<h1>Contact</h1>
-<p>
-
-</p>
+<h1><?=$this->article['name'] ?></h1>
+    <p>
+        <?= $this->article['text'] ?>
+    </p>
 <?php $this->endblock() ?>

@@ -1,0 +1,13 @@
+<?php $this->extend('base.phtml') ?>
+<?php $this->block('content') ?>
+<h1>New article</h1>
+    <form action="/article/create" method="POST" style="display: flex; flex-direction: column;">
+        <label for="title">Title</label>
+        <input type="text" name="title">
+
+        <label for="text">Text</label>
+        <textarea name="text" id="" cols="30" rows="10"></textarea>
+
+        <input type="submit" name="submit">
+    </form>
+<?php $this->endblock() ?>

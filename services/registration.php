@@ -4,7 +4,6 @@ function registration(string $login, string $password): bool
     $sql = 'INSERT INTO user(login, password, role)
             VALUES(:login, :password, :role)';
 
-
     $statement = db()->prepare($sql);
     $statement->bindValue(':login', $login);
     $statement->bindValue(':password', password_hash($password, PASSWORD_BCRYPT));

@@ -9,5 +9,6 @@ require_once './Template.php';
 require_once './secret/db.php';
 require_once './services/db.php';
 require_once './services/registration.php';
+require_once './services/roles.php';
 require_once './routes.php';
 

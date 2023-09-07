@@ -1,13 +1,10 @@
 <?php
 function previousLocation(): string
 {
-    $exploded = isset($_SERVER['HTTP_REFERER']) ? explode('/',$_SERVER['HTTP_REFERER']) : null;
-    $location = $exploded ? end($exploded) : '';
-
-    return '/' . $location;
+    return isset($_SERVER['HTTP_REFERER']) ? parse_url($_SERVER['HTTP_REFERER'])['path'] : '/';
 }
 
-function locate(string $location = '/'): string
+function locate(string $location = '/'): void
 {
     header('Location: ' . $location) && die;
 }

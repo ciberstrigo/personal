@@ -6,7 +6,7 @@ const FLASH_WARNING = 'warning';
 const FLASH_INFO = 'info';
 const FLASH_SUCCESS = 'success';
 
-function createFlash(string $name, string $message, string $type)
+function createFlash(string $name, string $message, string $type): void
 {
     if (isset($_SESSION[FLASH][$name])) {
         unset($_SESSION[FLASH][$name]);
@@ -30,7 +30,7 @@ function displayFlash($name): string
     );
 }
 
-function flash(string $name = '', string $message = '', string $type = '')
+function flash(string $name = '', string $message = '', string $type = ''): string|null
 {
     if ($name !== '' && $message !== '' && $type !== '') {
         createFlash($name, $message, $type);

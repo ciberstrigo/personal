@@ -1,0 +1,18 @@
+<?php $this->extend('base.phtml') ?>
+<?php $this->block('content') ?>
+    <h1 style="display: flex; justify-content: space-between;">
+        Articles <a href="/article/create" style="text-align: right">+</a>
+    </h1>
+
+<ul>
+    <?php foreach ($this->articles as $article): ?>
+        <li>
+            <a href="/article/<?=$article['id']?>"><?=$article['name'] ?></a>
+            <span style="color: dimgray"><?=$article['created_at'] ?></span>
+            <?= $this->isAdmin ? '<a href="/article/'.$article['id'].'/edit">(edit)</a>' : '' ?>
+        </li>
+    <?php endforeach; ?>
+</ul>
+
+
+<?php $this->endblock() ?>

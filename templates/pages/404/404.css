@@ -1,0 +1,66 @@
+header > .tabs {
+    background-color: red;
+    height: 20pt;
+    display: flex;
+    justify-content: space-between;
+}
+
+main > .in-block {
+    margin: 6pt 4pt 4pt;
+    border: 4px solid red;
+    display: flex;
+    width: 100%;
+}
+
+main > .in-block > .divider {
+    border: 2px solid red;
+    display: flex;
+}
+
+.gradient-box {
+    background: repeating-linear-gradient(to right,
+    #ec0404 0%,
+    #ec0404 10%,
+    #d90505 10%,
+    #d90505 20%,
+    #bb0404 20%,
+    #bb0404 30%,
+    #9c0404 30%,
+    #9c0404 40%,
+    #6c0606 40%,
+    #6c0606 50%,
+    #9c0404 50%,
+    #9c0404 60%,
+    #a80606 60%,
+    #a80606 70%,
+    #bb0404 70%,
+    #bb0404 80%,
+    #d90505 80%,
+    #d90505 90%,
+    #ce0606 90%,
+    #ce0606 100%
+    );
+    background-size: 200% 100%;
+    animation: gradientAnimation 15s linear infinite;
+    color: #FFF;
+}
+
+.message-404-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* Define the blinking animation */
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Apply the animation to the text */
+.blinking-text {
+    animation: blink 2s steps(1) infinite; /* 1s duration, infinite repeat */
+}
