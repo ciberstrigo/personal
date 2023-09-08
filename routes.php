@@ -154,7 +154,7 @@ echo route([
     },
     '/set' => static function () {
         if (isset($_GET['lang'])) {
-            $_SESSION['lang'] = $_GET['lang'];
+            setLanguage(Language::tryFrom($_GET['lang']));
         }
 
         if (isset($_GET['font'])) {
@@ -162,9 +162,6 @@ echo route([
         }
 
         locate(previousLocation());
-    },
-    '/test' => static function() {
-        var_dump(articleList());die;
     },
     '/404' => static function() {
         return (new Template())->render('pages/404/404.phtml');

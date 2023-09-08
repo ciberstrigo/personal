@@ -10,7 +10,7 @@
 <ul>
     <?php foreach ($this->articles as $article): ?>
         <li>
-            <a href="/article/<?=$article['id']?>"><?=$article['name'] ?></a>
+            <a href="/article/<?=$article['id']?>"><?=$article['title'] ?></a>
             <span style="color: dimgray"><?=$article['created_at'] ?></span>
             <?= $this->isAdmin ? '<a href="/article/'.$article['id'].'/edit">(edit)</a>' : '' ?>
         </li>

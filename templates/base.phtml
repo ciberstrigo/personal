@@ -45,7 +45,8 @@
                         [
                             'field' => 'lang',
                             'options' => ['en', 'ru'],
-                            'default' => 'en'
+                            'default' => Language::ENGLISH,
+                            'enumCases' => Language::cases()
                         ]
                 ) ?>
             </fieldset>
