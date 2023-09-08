@@ -30,7 +30,7 @@ function displayFlash($name): string
     );
 }
 
-function flash(string $name = '', string $message = '', string $type = ''): string|null
+function flash(string $name = '', string $message = '', string $type = '')
 {
     if ($name !== '' && $message !== '' && $type !== '') {
         createFlash($name, $message, $type);

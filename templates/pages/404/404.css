@@ -5,14 +5,14 @@ header > .tabs {
     justify-content: space-between;
 }
 
-main > .in-block {
+.container > .in-block {
     margin: 6pt 4pt 4pt;
     border: 4px solid red;
     display: flex;
     width: 100%;
 }
 
-main > .in-block > .divider {
+.container > .in-block > .divider {
     border: 2px solid red;
     display: flex;
 }

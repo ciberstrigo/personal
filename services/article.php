@@ -1,14 +1,18 @@
 <?php
-    function articleList() {
-        $sql = 'SELECT a.id, name, u.login, created_at FROM article a JOIN user u on u.id = a.author_id';
+    function articleList(string $lang = 'en') {
+        $sql = 'SELECT a.id, author_id, name%s as name, created_at, text%s as text FROM article a JOIN user u on u.id = a.author_id';
+        $lang = $lang === 'en' ? '' : '_'.$lang;
+        $sql = sprintf($sql, $lang, $lang);
         $statement = db()->prepare($sql);
         $statement->execute();
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    function getArticle(int $id) {
-        $sql = 'SELECT * FROM article a WHERE a.id = :id';
+    function getArticle(int $id, string $lang = 'en') {
+        $sql = 'SELECT id, author_id, name%s as name, created_at, text%s as text FROM article a WHERE a.id = :id';
+        $lang = $lang === 'en' ? '' : '_'.$lang;
+        $sql = sprintf($sql, $lang, $lang);
         $statement = db()->prepare($sql);
         $statement->bindValue(':id', $id);
         $statement->execute();

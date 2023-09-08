@@ -46,13 +46,13 @@ function route($routes): string
 echo route([
     '/articles' => static function () {
         return (new Template)->render('pages/article/list.phtml', [
-            'articles' => articleList(),
+            'articles' => articleList(language()),
             'isAdmin' => isset($_SESSION['user_id']) && isAdmin($_SESSION['user_id'])
         ]);
     },
     '/article/{id}' => static function ($id) {
         return (new Template)->render('pages/article/article.phtml', [
-            'article' => getArticle($id)
+            'article' => getArticle($id, language())
         ]);
     },
     '/article/create' => static function() {
@@ -77,7 +77,7 @@ echo route([
             locate('/article/'.$articleId);
         }
 
-        $article = getArticle($articleId);
+        $article = getArticle($articleId, language());
 
         return (new Template)->render('pages/article/edit.phtml', [
             'title' => $article['name'],
@@ -89,7 +89,9 @@ echo route([
         return (new Template)->render('pages/contact/contact.phtml', []);
     },
     '/' => static function () {
-        return (new Template)->render('pages/main.phtml', []);
+        return (new Template)->render('pages/main.phtml', [
+            'mainPage' => getArticle(1, language())
+        ]);
     },
     '/login' => static function () {
         if (isset($_SESSION['login'])) {
@@ -148,7 +150,7 @@ echo route([
         unset($_SESSION['username'], $_SESSION['user_id']);
         session_destroy();
 
-        header('Location: /') && die;
+        locate(previousLocation());
     },
     '/set' => static function () {
         if (isset($_GET['lang'])) {

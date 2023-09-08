@@ -1,5 +1,7 @@
 <?php
 session_start();
+require_once './translation.php';
+require_once './services/macros.php';
 require_once './services/location.php';
 require_once './services/cleanQuery.php';
 require_once './services/flash.php';

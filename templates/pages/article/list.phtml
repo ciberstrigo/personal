@@ -1,7 +1,10 @@
 <?php $this->extend('base.phtml') ?>
 <?php $this->block('content') ?>
     <h1 style="display: flex; justify-content: space-between;">
-        Articles <a href="/article/create" style="text-align: right">+</a>
+        <?= trans('Articles') ?>
+        <?= isset($_SESSION['user_id']) && isAdmin($_SESSION['user_id'])
+            ? '<a href="/article/create" style="text-align: right">+</a>'
+            : '' ?>
     </h1>
 
 <ul>

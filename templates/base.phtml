@@ -5,31 +5,33 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="theme-color" content="#1214b0">
     <link rel="stylesheet" type="text/css" href="/style.css">
     <?= $this->stylesheets ?>
     <title>L.A. Personal page</title>
 </head>
 <body>
+<audio id="myAudio" autoplay src="/beep.mp3" type="audio/mp3"></audio>
 <header>
     <div class="title gradient-box">
-        Leonid Averianov personal web page
+        <?=trans('personal_web_page') ?>
     </div>
     <div class="tabs">
         <ul>
-            <a href="/"><li class="<?= '/' === $this->path ? 'active' : '' ?>">Main</li></a>
-            <a href="/articles"><li class="<?= '/articles' === $this->path ? 'active' : '' ?>">Articles</li></a>
-            <a href="/contact"><li class="<?= '/contact' === $this->path ? 'active' : '' ?>">Contact</li></a>
+            <a href="/"><li class="<?= '/' === $this->path ? 'active' : '' ?>"><?=trans('Main') ?></li></a>
+            <a href="/articles"><li class="<?= '/articles' === $this->path ? 'active' : '' ?>"><?=trans('Articles') ?></li></a>
+            <a href="/contact"><li class="<?= '/contact' === $this->path ? 'active' : '' ?>"><?=trans('Contact') ?></li></a>
         </ul>
         <div class="user-info">
             <?php if (isset($_SESSION['login'])) {
-                echo($_SESSION['login'].': '.'<a href="/logout">Logout</a>');
+                echo($_SESSION['login'].': '.'<a href="/logout">'.trans('Logout').'</a>');
             } else {
-                echo('<a href="/login">Login</a>');
+                echo('<a href="/login">'.trans('Login').'</a>');
             } ?>
         </div>
     </div>
 </header>
-<main>
+<div class="container">
     <div class="in-block">
         <div class="left content">
             <?= $this->content ?>
@@ -42,8 +44,8 @@
                         'components/switch.phtml',
                         [
                             'field' => 'lang',
-                            'options' => ['English', 'Русский'],
-                            'default' => 'English'
+                            'options' => ['en', 'ru'],
+                            'default' => 'en'
                         ]
                 ) ?>
             </fieldset>
@@ -57,10 +59,10 @@
             </fieldset>
         </div>
     </div>
-</main>
+</div>
 <footer class="gradient-box">
     <div class="content">
-        All rights reserved. Made with PHP without any javascript and fancy frameworks.
+        <?=trans('all_rights_reserved') ?>
     </div>
 </footer>
 <?= $this->modal ?>
