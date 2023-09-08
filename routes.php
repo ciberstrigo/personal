@@ -80,7 +80,7 @@ echo route([
         $article = getArticle($articleId, language());
 
         return (new Template)->render('pages/article/edit.phtml', [
-            'title' => $article['name'],
+            'title' => $article['title'],
             'text' => $article['text'],
             'articleId' => $articleId
         ]);
