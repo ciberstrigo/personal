@@ -1,6 +1,12 @@
 <?php
-function registration(string $login, string $password): bool
+const LOGIN_MAX_LENGTH = 26;
+
+function registration(string $login, string $password): ?array
 {
+    if (strlen($login) > LOGIN_MAX_LENGTH) {
+        return null;
+    }
+
     $sql = 'INSERT INTO user(login, password, role)
             VALUES(:login, :password, :role)';
 
@@ -9,7 +15,11 @@ function registration(string $login, string $password): bool
     $statement->bindValue(':password', password_hash($password, PASSWORD_BCRYPT));
     $statement->bindValue(':role', json_encode(['user']));
 
-    return $statement->execute();
+    if (!$statement->execute()) {
+        return null;
+    }
+
+    return login($login, $password);
 }
 
 function alreadyRegistered(string $username): bool

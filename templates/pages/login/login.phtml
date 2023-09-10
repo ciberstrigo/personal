@@ -10,10 +10,11 @@
 
             <label for="password">Password:</label>
             <input name="password" id="password" type="password" class="textable"/>
+            <input type="hidden" name="previous" value="<?=previousLocation() ?>">
 
             <input type="submit" name="logining"/>
         </form>
 
-        No account? : <a href="/registration">Registration</a>
+        No account? : <a href="/registration?previous=<?=previousLocation() ?>">Registration</a>
     </div>
 <?php $this->endblock() ?>

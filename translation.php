@@ -27,5 +27,13 @@
         'personal_web_page' => [
             'en' => 'Leonid Averianov personal web page',
             'ru' => 'Леонид Аверьянов - домашняя страница в сети интернет'
+        ],
+        'title_comments' => [
+            'en' => 'Comments',
+            'ru' => 'Комментарии'
+        ],
+        'placeholder_comments' => [
+            'en' => 'Text of your comment...',
+            'ru' => 'Ваш комментарий...'
         ]
     ];

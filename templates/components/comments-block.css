@@ -1,0 +1,58 @@
+.comment-textarea {
+    display: flex;
+    width: 100%;
+}
+
+.comments-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.comments-divider {
+    border: 2px solid #000000;
+    display: flex;
+    margin: 4pt;
+}
+
+.comment {
+    display: flex;
+    flex-direction: column;
+    padding-top: 3pt;
+    padding-bottom: 3pt;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding-bottom: 3pt;
+}
+
+.comment-header-element {
+    display: flex;
+}
+
+.comment-author {
+    color: #403f3f;
+}
+
+.comment-created-at {
+    color: #898b8b;
+}
+
+.comments-block > form {
+    display: flex;
+}
+
+.comment-captcha {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-replied {
+    display: flex;
+    margin-left: 10pt;
+    color: #403f3f;
+    flex-direction: column;
+}
+

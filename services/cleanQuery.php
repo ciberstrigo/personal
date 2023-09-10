@@ -1,6 +1,6 @@
 <?php
 
-function cleanQuery(array $fields, string $type='POST')
+function cleanQuery(array $fields, string $type='POST'): void
 {
     foreach ($fields as $field) {
         if ('POST' === $type) {

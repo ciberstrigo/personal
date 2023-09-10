@@ -229,12 +229,35 @@ a.active {
     font-family: 'BIOS', 'BIOS-rus', sans-serif;
 }
 
+input[type='text'] {
+    color: white;
+    background-color: #1214b0;
+    border: none; /* Remove default border */
+    outline: none; /* Remove the default focus outline */
+    font-family: 'BIOS', 'BIOS-rus', sans-serif;
+    border-radius: 0;
+}
+
 .login-window > form > input[type='submit'] {
     border: none;
     outline: none;
     background: transparent;
     font-family: 'BIOS', 'BIOS-rus', sans-serif;
     font-size: 16pt;
+}
+
+textarea {
+    color: white;
+    background-color: #1214b0;
+    border: none; /* Remove default border */
+    outline: none; /* Remove the default focus outline */
+    font-family: 'BIOS', 'BIOS-rus', sans-serif;
+    resize: none;
+    border-radius: 0;
+}
+
+input {
+    border-radius: 0;
 }
 
 .alert-error {

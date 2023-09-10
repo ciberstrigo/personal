@@ -4,4 +4,11 @@
     <p>
         <?= $this->article['text'] ?>
     </p>
+    <?= (new Template())->render(
+            'components/comments-block.phtml',
+            [
+                'articleId' => $this->article['id'],
+                'comments' => $this->comments
+            ]);
+    ?>
 <?php $this->endblock() ?>

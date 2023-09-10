@@ -1,6 +1,7 @@
 <?php $this->extend('base.phtml') ?>
-<?php $this->block('content') ?>
-    <div class="login-window">
+<?php $this->block('modal') ?>
+    <a class="modal-background" href="<?= previousLocation() ?>"></a>
+    <div class="login-window modal">
         <h1>Registration</h1>
         <form action="/registration" method="POST">
             <?=flash('registration') ?>
@@ -10,7 +11,7 @@
 
             <label for="password">Password:</label>
             <input name="password" id="password" type="password" class="textable"/>
-
+            <input type="hidden" name="previous" value="<?=isset($_GET['previous']) ? $_GET['previous'] : '' ?>">
             <input type="submit" name="Register"/>
         </form>
     </div>

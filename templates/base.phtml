@@ -24,7 +24,8 @@
         </ul>
         <div class="user-info">
             <?php if (isset($_SESSION['login'])) {
-                echo($_SESSION['login'].': '.'<a href="/logout">'.trans('Logout').'</a>');
+                // TODO логин плохо отображается на мобилах, надо вынести на новую строчку
+                echo(!$_SESSION['login'].': '.'<a href="/logout">'.trans('Logout').'</a>');
             } else {
                 echo('<a href="/login">'.trans('Login').'</a>');
             } ?>
@@ -34,6 +35,8 @@
 <div class="container">
     <div class="in-block">
         <div class="left content">
+            <?= flash('login') ?>
+            <?= flash('registration') ?>
             <?= $this->content ?>
         </div>
         <div class="divider"></div>
@@ -44,19 +47,10 @@
                         'components/switch.phtml',
                         [
                             'field' => 'lang',
-                            'options' => ['en', 'ru'],
-                            'default' => Language::ENGLISH,
-                            'enumCases' => Language::cases()
+                            'options' => array_map(function ($case) { return $case->value; }, Language::cases()),
+                            'default' => Language::ENGLISH->value
                         ]
                 ) ?>
-            </fieldset>
-
-            <fieldset>
-                <legend>Font:</legend>
-                <div class="select-options">
-                    <a class="active">►&#0020;Pixelated</a>
-                    <a>&#0020;&#0020;Sans</a>
-                </div>
             </fieldset>
         </div>
     </div>

@@ -34,18 +34,15 @@
         return $statement->execute();
     }
 
-    function createArticle(int $authorId, string $title, string $text, Language $lang)
+    function createArticle(int $authorId, string $title, string $text, Language $lang): bool|string
     {
-        $sql = 'INSERT INTO article (author_id, name_%s, text_%s, created_at) VALUES (:author_id, :name, :text, NOW())';
+        $sql = 'INSERT INTO article (author_id, title_%s, text_%s, created_at) VALUES (:author_id, :name, :text, NOW())';
         $sql = sprintf($sql, $lang->value, $lang->value);
         $statement = db()->prepare($sql);
         $statement->bindValue('author_id', $authorId);
         $statement->bindValue('name', $title);
         $statement->bindValue('text', $text);
 
-        if ($statement->execute()) {
-            return db()->lastInsertId();
-        } else {
-            return null;
-        }
+        $statement->execute();
+        return db()->lastInsertId();
     }

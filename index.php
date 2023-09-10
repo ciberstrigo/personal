@@ -1,17 +1,19 @@
 <?php
 session_start();
-require_once './services/language.php';
-require_once './translation.php';
-require_once './services/macros.php';
-require_once './services/location.php';
-require_once './services/cleanQuery.php';
-require_once './services/flash.php';
-require_once './services/login.php';
-require_once './services/article.php';
-require_once './Template.php';
-require_once './secret/db.php';
-require_once './services/db.php';
-require_once './services/registration.php';
-require_once './services/roles.php';
-require_once './routes.php';
+require './services/captcha.php';
+require './services/comments.php';
+require './services/language.php';
+require './translation.php';
+require './services/macros.php';
+require './services/location.php';
+require './services/cleanQuery.php';
+require './services/flash.php';
+require './services/login.php';
+require './services/article.php';
+require './Template.php';
+require './secret/db.php';
+require './services/db.php';
+require './services/registration.php';
+require './services/roles.php';
+require './routes.php';
 

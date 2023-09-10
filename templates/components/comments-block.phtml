@@ -1,0 +1,61 @@
+<?=style('/templates/components/comments-block.css')?>
+
+<div class="comments-divider"></div>
+<div class="comments-block">
+    <h2 id="comments" style="margin-bottom: 1pt">
+        <?=trans('title_comments') ?>
+    </h2>
+    <span>
+        <?php if (isset($_SESSION['user_id']) && isset($_SESSION['REPLY_TO_ID'])): ?>
+            Replying to <a href="#comment<?=$_SESSION['REPLY_TO_ID']?>">#<?= $_SESSION['REPLY_TO_ID'] ?></a> | <a href="/article/<?=$this->articleId?>/comment/reply-to/undo">undo</a>
+        <?php endif; ?>
+    </span>
+    <?php if(isset($_SESSION['user_id'])): ?>
+        <form action="/article/<?=$this->articleId?>/comment" method="POST">
+            <div class="comment-captcha">
+                <img src="/captcha" alt="captcha">
+                <input type="text" placeholder="captcha" name="captcha">
+            </div>
+            <textarea name="text"
+                      id="comment"
+                      class="comment-textarea"
+                      cols="45"
+                      rows="5"
+                      placeholder="<?=trans('placeholder_comments') ?>"></textarea>
+            <input type="hidden" name="reply_to" value="<?=isset($_SESSION['REPLY_TO_ID']) ? $_SESSION['REPLY_TO_ID'] : '' ?>">
+            <input type="submit" title="Submit">
+        </form>
+        <?=flash('comments') ?>
+        <div class="comments-divider"></div>
+    <?php else: ?>
+        <span>Want to leave a comment?
+            <span>
+                <a href="/login">Login</a> or
+                <a href="/registration?previous=/article/<?=$this->articleId?>">register</a>. It's easy.
+            </span>
+    <?php endif; ?>
+    <div class="comments-all">
+        <?php foreach($this->comments as $comment): ?>
+            <div class="comment" id="comment-<?=$comment['id']?>">
+                <div class="comment-header">
+                    <span>
+                        <a href="/article/<?=$this->articleId?>/comment/reply-to/<?=$comment['id']?>" class="comment-header-element comment-author">
+                            #<?=$comment['id'] ?> | <?=$comment['author'] ?>
+                        </a>
+                        <?php if (isset($_SESSION['user_id']) && isAdmin($_SESSION['user_id'])): ?>
+                            <a href="/article/<?=$this->articleId?>/comment/<?=$comment['id']?>/delete">(delete)</a>
+                        <?php endif; ?>
+                    </span>
+                    <div class="comment-header-element comment-created-at"><?=$comment['created_at'] ?></div>
+                </div>
+                <?php if ($comment['replied_id']): ?>
+                    <div class="comment-replied">
+                        <span>| <?=$comment['replied_login'] ?></span>
+                        <span>| <?=$comment['replied_text'] ?></span>
+                    </div>
+                <?php endif; ?>
+                <?=$comment['text'] ?>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>
